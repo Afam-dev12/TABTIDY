@@ -1,0 +1,17 @@
+{
+    "manifest_version": 3,
+    "name": "TABTIDY",
+    "version": "1.0.0",
+    "description": "A simple and useful tool for organizing browser tabs.",
+    "permissions": [
+        "tabs",
+        "storage"
+    ],
+    "action": {
+        "default_popup": "popup/popup.html",
+        "default_title": "TABTIDY"
+    },
+    "background": {
+        "service_worker": "scripts/background.js"
+    }
+}
