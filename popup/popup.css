@@ -1,0 +1,383 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 420px;
+    min-height: 500px;
+    background: #f8f8f5;
+    color: #20231f;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.app {
+    padding: 22px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.brand-mark {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: #243d30;
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.brand h1 {
+    font-size: 17px;
+    letter-spacing: 1.3px;
+}
+
+.brand p {
+    margin-top: 4px;
+    font-size: 11px;
+    color: #858982;
+}
+
+.tab-counter {
+    text-align: right;
+}
+
+.tab-counter span {
+    display: block;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.tab-counter small {
+    color: #858982;
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+.search-box {
+    height: 43px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 12px;
+    border: 1px solid #e5e7e1;
+    border-radius: 9px;
+    background: white;
+}
+
+.search-icon {
+    color: #7b837b;
+    font-size: 22px;
+}
+
+.search-box input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    color: #20231f;
+    font-size: 12px;
+}
+
+.clear-search {
+    display: none;
+    border: none;
+    background: transparent;
+    color: #888;
+    font-size: 19px;
+}
+
+.toolbar {
+    display: flex;
+    gap: 9px;
+    margin: 14px 0 25px;
+}
+
+.primary-btn,
+.secondary-btn {
+    min-height: 38px;
+    padding: 0 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.primary-btn {
+    flex: 1;
+    border: 1px solid #243d30;
+    background: #243d30;
+    color: white;
+}
+
+.primary-btn:hover {
+    background: #304d3d;
+}
+
+.primary-btn span {
+    font-size: 16px;
+    margin-right: 4px;
+}
+
+.secondary-btn {
+    border: 1px solid #e3e5df;
+    background: white;
+    color: #454b44
+}
+
+.secondary-btn:hover,
+.icon-btn:hover {
+    background: #eeefe9;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 13px;
+}
+
+.section-heading h2 {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.section-heading p {
+    margin-top: 4px;
+    color: #8a9088;
+    font-size: 10px;
+}
+
+.icon-btn {
+    width: 31px;
+    height: 31px;
+    border: 1px solid #e5e7e1;
+    border-radius: 8px;
+    background: white;
+    font-size: 19px;
+    color: #555e54;
+}
+
+.tabs-list {
+    max-height: 225px;
+    overflow-y: auto;
+}
+
+.tab-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 54px;
+    padding: 8px 9px;
+    border-bottom: 1px solid #eceee8;
+}
+
+.tab-item:hover {
+    background: #f0f1eb;
+}
+
+.tab_favicon {
+    width: 25px;
+    height: 25px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 6px;
+    background: #ecefe8;
+    color: #52634f;
+    font-size: 12px;
+    overflow: hidden;
+}
+
+.tab-favicon img {
+    width: 17px;
+    height: 17px;
+    object-fit: contain;
+}
+
+.tab-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.tab-title {
+    display: block;
+    overflow: hidden;
+    color: #30352f;
+    font-weight: 600;
+    font-size: 11px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tab-url {
+    display: block;
+    overflow: hidden;
+    margin-top: 4px;
+    color: #90968e;
+    font-size: 9px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.close-tab {
+    width: 25px;
+    height: 25px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: #92978f;
+    font-size: 17px;
+}
+
+.close-tab:hover {
+    background: #f4e7e4;
+    color: #b94d3d;
+}
+
+.sessions-section {
+    margin-top: 27px;
+}
+
+.session-count {
+    color: #8b9188;
+    font-size: 10px;
+}
+
+.session-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 12px 9px;
+    margin-bottom: 7px;
+    border: 1px solid #e8eae4;
+    border-radius: 8px;
+    background: white;
+}
+
+.session-icon {
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    background: #edf0e9;
+    font-size: 15px;
+}
+
+.session-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.session-name {
+    display: block;
+    overflow: hidden;
+    font-size: 11px;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.session-details {
+    display: block;
+    margin-top: 4px;
+    color: #92978e;
+    font-size: 9px;
+}
+
+.session-actions {
+    display: flex;
+    gap: 4px;
+}
+
+.session-action button {
+    padding: 6px 7px;
+    border: 1px solid #e7e9e2;
+    border-radius: 6px;
+    background: white;
+    color: #4b554a;
+    font-size: 10px;
+}
+
+.session-actions button:hover {
+    background: #f0f1eb;
+}
+
+.session-actions .delete-session {
+    color: #b94d3d;
+}
+
+.empty-state {
+    padding: 17px 10px;
+    color: #92978e;
+    text-align: center;
+    font-size: 11px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.loading {
+    padding: 20px;
+    color: #92978e;
+    text-align: center;
+    font-size: 11px;
+}
+
+.toast {
+    position: fixed;
+    right: 20px;
+    bottom: 45px;
+    left: 20px;
+    padding: 11px;
+    border-radius: 8px;
+    background: #243d30;
+    color: white;
+    text-align: center;
+    font-size: 11px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.toast.show {
+    opacity: 1;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 13px;
+    border-top: 1px solid #e7e9e2;
+    color: #9a9f96;
+    font-size: 9px;
+}
+
+.footer span:first-child {
+    font-weight: 700;
+    letter-spacing: 1px;
+}
