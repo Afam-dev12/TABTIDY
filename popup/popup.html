@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TABTIDY</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+    <main class="app">
+
+        <header class="header">
+            <div class="brand">
+                <div class="brand-mark">T</div>
+                <div>
+                    <h1>TABTIDY</h1>
+                    <p>Your browser, organised.</p>
+                </div>
+            </div>
+
+            <div class="tab-counter">
+                <span id="tabCount">0</span>
+                <small>OPEN TABS</small>
+            </div>
+        </header>
+
+        <section class="search-section">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input
+                   type="text"
+                   id="search-Input"
+                   placeholder="Search your opentabs..."
+                   autocomplete="off"
+                >
+                <button id="clearSearch" class="clear-search" aria-label="Clear search">*</button>
+            </div>
+        </section>
+
+        <section class="toolbar">
+            <button id="saveSessionBtn" class="primary-btn">
+                <span>+</span> Save session
+            </button>
+
+            <button id="removeDuplicatesBtn" class="secondary-btn">
+                Remove duplicates
+            </button>
+        </section>
+
+        <section class="tabs-section">
+            <div class="section-heading">
+                <div>
+                    <h2>Open tabs</h2>
+                    <p>Manage your current browsing</p>
+                </div>
+                <button id="refreshBtn" class="icon-btn" titlee="Refresh tabs"></button>
+            </div>
+            <div id="tabsList" class="tabs-list">
+              <div class="loading">Loading your tabs...</div>
+            </div>
+
+            <p id="emptyTabs" class="empty-state hidden">
+                No tabs found.
+            </p>
+        </section>
+
+        <section class="sessions-section">
+            <div class="section-heading">
+                <div>
+                    <h2>Saved sessions</h2>
+                    <p>Pick up where you left off</p>
+                </div>
+                <span id="sessionCount" class="session-count">0 saved</span>
+            </div>
+
+            <div id="sessionsList" class="sessions-list"></div>
+
+            <p id="emptySessions" class="empty-state">
+                You haven't saved any sessions yet.
+            </p>
+        </section>
+
+        <div id="toast" class="toast" role="status"></div>
+
+        <footer class="footer">
+            <span>TABTIDY</span>
+            <span>Keep your browsing tidy.</span>
+        </footer>
+
+    </main>
+    <scripts src="popup.js"></script>
+</body>
+</html>
