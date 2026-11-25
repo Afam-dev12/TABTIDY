@@ -148,7 +148,7 @@ saveSessionBtn.addEventListener("click", async () => {
         });
 
         const validTabs = tabs
-         .filter(tab => tab.url && !tab.url.startsWith("chrome://"))
+         .filter(tab => tab.url && /^https?:\/\//i.test(tab.url))
          .map(tab => ({
             title: tab.title || "Untitled tab",
             url: tab.url
@@ -246,50 +246,50 @@ function renderSessions() {
 sessionsList.addEventListener("click", async event => {
     const button = event.target.closest("[data-action]");
 
-    if (!button) return;
+  if (!session) return;
 
-    const session = savedSessions.find(
-        item => item.id === button.dataset.id
-    );
+if (button.dataset.action === "restore") {
+    let restoredCount = 0;
+    let failedCount = 0;
 
-    if (!session) return;
+    for (let i = 0; i < session.tabs.length; i++) {
+        const tab = session.tabs[i];
 
-    if (button.dataset.action === "restore") {
         try {
-            for(let i = 0; i < session.tabs.length; i++) {
-                const tab = session.tabs[i];
+            await chrome.tabs.create({
+                url: tab.url,
+                active: restoredCount === 0
+            });
 
-                await chrome.tabs.create({
-                    url: tab.url,
-                    active: i === 0
-                });
-            }
+            restoredCount++;
 
-            showToast("Session restored.");
         } catch (error) {
-            showToast("Could not restore session.");
-            console.error(error);
+            failedCount++;
+            console.error("Could not restore:", tab.url, error);
         }
     }
 
-    if (button.dataset.action === "delete") {
-        const confirmed = confirm(
-            `Delete "${session.name}"?`
-        );
+    showToast(`${restoredCount} of ${session.tabs.length} tabs restored.`);
+}
 
-        if (!confirmed) return;
+if (button.dataset.action === "delete") {
+    const confirmed = confirm(
+        `Delete "${session.name}"?`
+    );
 
-        savedSessions = savedSessions.filter(
-            item => item.id !== session.id
-        );
+    if (!confirmed) return;
 
-        await chrome.storage.local.set({
-            savedSessions
-        });
+    savedSessions = savedSessions.filter(
+        item => item.id !== session.id
+    );
 
-        renderSessions();
-        showToast("Session deleted.");
-    }
+    await chrome.storage.local.set({
+        savedSessions
+    });
+
+    renderSessions();
+    showToast("Session deleted.");
+}
 });
 
 removeDuplicatesBtn.addEventListener("click", async () => {
@@ -306,14 +306,19 @@ removeDuplicatesBtn.addEventListener("click", async () => {
 
             let normalizedUrl = tab.url;
 
-            try {
-                const parsedUrl = new URL(tab.url);
-                parsedUrl.hash = '';
+try {
+    const parsedUrl = new URL(tab.url);
 
-                normalizedUrl = parsedUrl.href.replace(/\/$/, "");
-            } catch {
-                // keep the original URL if it cannot be parsed.
-            }
+    parsedUrl.hash = "";
+
+    if (parsedUrl.pathname !== "/") {
+       parsedUrl.pathname = parsedUrl.pathname.replace(/\/+$/, "");
+    }
+
+    normalizedUrl = parsedUrl.href;
+} catch {
+
+}
 
             if (seenUrls.has(normalizedUrl)) {
                 duplicateIds.push(tab.id);
